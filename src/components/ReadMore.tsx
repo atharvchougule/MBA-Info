@@ -16,7 +16,6 @@ const ReadMore: React.FC<ReadMoreButtonProps> = ({ textsToShowInitially, textsTo
   return (
     <>
       {showAllText ? (
-        // Concatenate initial texts and expanded texts when showAllText is true
         textsToShowInitially.concat(textsToShowOnExpand).map((text, index) => (
           <Typography key={index} variant="body1" sx={{marginBottom: 2 }}>
             <span style={{ paddingLeft: '10px' }}>• </span>{text}
