@@ -1,0 +1,46 @@
+.menu-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 38px; /* Adjust height as needed */
+    padding: 0 20px;
+    background: linear-gradient(to right, #3f51b5 50%, #ffd700 50%);
+    transition: top 0.3s;
+    z-index: 1000;
+  }
+  
+  .menu-bar.hidden {
+    top: -60px; /* Adjust this value based on your menu bar height */
+  }
+  
+  .blue-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 20px; /* Adjust padding as needed */
+  }
+  
+  .blue-section a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 20px; /* Adjust margin as needed */
+  }
+  
+  .slanted-line {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 60px 0 0 100vw; /* Adjust 60px to match menu bar height */
+    border-color: transparent transparent transparent #ffd700; /* Yellow */
+  }
+  
+  .yellow-section {
+    flex: 1;
+    height: 60px; /* Adjust this value to match the menu bar height */
+    background-color: #ffd700; /* Yellow */
+  }
+  

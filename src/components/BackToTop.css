@@ -1,0 +1,43 @@
+/* BackToTopButton.css */
+
+.back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #0056b3;
+    color: white;
+    border-radius:25px 0  25px 0;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .back-to-top:hover {
+    background-color: yellowgreen;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .back-to-top span {
+    display: inline-block;
+    transform: rotate(0deg);
+  }
+  
+  .back-to-top.show {
+    display: block;
+  }
+  
+  /* Additional styles for the content if needed */
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    height: 3000px; /* Example content height */
+  }
+  

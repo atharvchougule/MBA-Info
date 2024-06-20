@@ -1,0 +1,1 @@
+<ReadMore textsToShowInitially={initialTexts}  textsToShowOnExpand = {textsToExpand}  />
