@@ -1,5 +1,6 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useRef, FormEvent  } from 'react';
 import { Dialog, DialogTitle, DialogContent ,DialogActions, Button, TextField, Checkbox, FormControlLabel,MenuItem} from '@mui/material';
+import emailjs from '@emailjs/browser';
 
 
 interface EnquiryPopupProps {
@@ -30,9 +31,10 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
     if (formData.agree) {
-      // Handle form submission
+      sendEmail(e);
       console.log('Form Data Submitted', formData);
       handleClose();
     } else {
@@ -41,14 +43,37 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
   };
 
   const options = [
-    { value: 'supply chain managementale', label: 'Supply Chain Managementale' },
-    { value: 'Hhuman resource management', label: 'Human Resource Management' },
-    { value: 'international business management', label: 'International Business Management' },
-    { value: 'hospital management', label: 'Hospital Management' },
-    { value: 'healthcare management', label: 'Healthcare Management' },
+    { value: 'Supply Chain Managementale', label: 'Supply Chain Managementale' },
+    { value: 'Human Resource Management', label: 'Human Resource Management' },
+    { value: 'International Business Banagement', label: 'International Business Management' },
+    { value: 'Hospital Management', label: 'Hospital Management' },
+    { value: 'Healthcare Management', label: 'Healthcare Management' },
   ];
 
+
+  const form = useRef<HTMLFormElement>(null);
+
+  const sendEmail = (e: FormEvent) => {
+    e.preventDefault();
+
+    if (form.current) {
+      emailjs.sendForm('service_ei6xkf9', 'template_57go0sk', form.current, 'SYKQkbSvXr04jFs23')
+        .then(
+          () => {
+            console.log('SUCCESS!');
+          },
+          (error) => {
+            console.log('FAILED...', error.text);
+          }
+        );
+    }
+
+  };
+
+
+
   return (
+    
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle sx={{ display: 'flex', justifyContent: 'center', fontWeight: '730', fontSize: '1.5rem' }}>
         <span>
@@ -57,6 +82,8 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
 
         </DialogTitle>
       <DialogContent>
+      <form ref={form} onSubmit={handleSubmit}>
+      
         <TextField
           margin="dense"
           label="Name"
@@ -123,7 +150,7 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
           }
           label="I Agree to collegencourses's Terms and Conditions & Privacy Policys"
         />
-      </DialogContent>
+      
       <DialogActions>
         <Button onClick={handleClose} color="primary">
           Cancel
@@ -132,7 +159,10 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
           Submit
         </Button>
       </DialogActions>
+      </form>
+      </DialogContent>
     </Dialog>
+    
   );
 };
 

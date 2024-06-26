@@ -35,9 +35,9 @@ const DropDown: React.FC<DropDownProps> = ({label1 , label2}) => {
                 color:'black' , 
                 fontWeight:'bold',
                 backgroundColor: '#ede7f6',
-                textAlign: 'left', // Align text to the left
-                justifyContent: 'flex-start', // Ensure text starts from the left edge
-                paddingLeft: '16px', // Add padding for left alignment
+                textAlign: 'left', 
+                justifyContent: 'flex-start', 
+                paddingLeft: '16px',
 
             }}
         >
