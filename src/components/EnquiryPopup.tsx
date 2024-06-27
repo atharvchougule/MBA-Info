@@ -1,6 +1,12 @@
-import React, { useState, ChangeEvent, useRef, FormEvent  } from 'react';
+import React, { useState, ChangeEvent, useRef, FormEvent , useEffect ,useContext } from 'react';
 import { Dialog, DialogTitle, DialogContent ,DialogActions, Button, TextField, Checkbox, FormControlLabel,MenuItem} from '@mui/material';
 import emailjs from '@emailjs/browser';
+import OtpUI from './OtpUI';
+import { auth } from '../firebase.config';
+import { RecaptchaVerifier , signInWithPhoneNumber  } from 'firebase/auth';
+import { OtpContext } from './OtpContext';
+
+
 
 
 interface EnquiryPopupProps {
@@ -9,6 +15,8 @@ interface EnquiryPopupProps {
 }
 
 const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
+  const { otpValid } = useContext(OtpContext);
+
 
 
   const [formData, setFormData] = useState({
@@ -22,6 +30,17 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
 
   
 
+  
+  const [showOtp, setShowOtp] = useState<boolean>(false);
+
+  const [confirmationResult, setConfirmationResult] = useState<any>(null);
+
+
+  useEffect(() => {
+    if (formData.phone.length === 10) {
+      handleSendOtp(formData.phone);
+    }
+  }, [formData.phone]);
    
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked } = e.target;
@@ -31,11 +50,37 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
     });
   };
 
+  const handleSendOtp = (phoneNumber: string) => {
+    const appVerifier = new RecaptchaVerifier(auth , 'recaptcha-container', {
+      'size': 'invisible',
+      'callback': () => {
+        // reCAPTCHA solved, allow sendOtp to be executed
+      },
+      'expired-callback': () => {
+    // Response expired. Ask user to solve reCAPTCHA again.
+    // ...
+  }
+    });
+
+    signInWithPhoneNumber(auth, `+91${phoneNumber}`, appVerifier)
+      .then((confirmationResult) => {
+        setConfirmationResult(confirmationResult);
+        setShowOtp(true);
+      })
+      .catch((error) => {
+        console.error("SMS not sent", error);
+      });
+
+    };
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (formData.agree) {
       sendEmail(e);
+      alert('Form Data Submitted');
       console.log('Form Data Submitted', formData);
+      setFormData({ name: '', email: '', phone: '', city: '', agree: false, specialization: '' }); // Reset form
+      setShowOtp(false);
       handleClose();
     } else {
       alert('You must agree to the terms and conditions');
@@ -43,9 +88,9 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
   };
 
   const options = [
-    { value: 'Supply Chain Managementale', label: 'Supply Chain Managementale' },
+    { value: 'Supply Chain Management', label: 'Supply Chain Management' },
     { value: 'Human Resource Management', label: 'Human Resource Management' },
-    { value: 'International Business Banagement', label: 'International Business Management' },
+    { value: 'International Business Management', label: 'International Business Management' },
     { value: 'Hospital Management', label: 'Hospital Management' },
     { value: 'Healthcare Management', label: 'Healthcare Management' },
   ];
@@ -75,12 +120,15 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
   return (
     
     <Dialog open={open} onClose={handleClose}>
+      
       <DialogTitle sx={{ display: 'flex', justifyContent: 'center', fontWeight: '730', fontSize: '1.5rem' }}>
         <span>
         Enquire Now
         </span>
 
         </DialogTitle>
+        
+
       <DialogContent>
       <form ref={form} onSubmit={handleSubmit}>
       
@@ -102,16 +150,6 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
           variant="outlined"
           name="email"
           value={formData.email}
-          onChange={handleChange}
-        />
-        <TextField
-          margin="dense"
-          label="Phone"
-          type="tel"
-          fullWidth
-          variant="outlined"
-          name="phone"
-          value={formData.phone}
           onChange={handleChange}
         />
         <TextField
@@ -139,8 +177,22 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
             {option.label}
           </MenuItem>
         ))}
+        
       </TextField>
-        <FormControlLabel
+      <TextField
+          margin="dense"
+          label="Phone"
+          type="tel"
+          fullWidth
+          variant="outlined"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+        />
+        <div id = "recaptcha-container"></div>
+        {showOtp && confirmationResult && <OtpUI confirmationResult={confirmationResult} />}
+        {otpValid === true && (
+        <FormControlLabel 
           control={
             <Checkbox
               name="agree"
@@ -150,6 +202,7 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
           }
           label="I Agree to collegencourses's Terms and Conditions & Privacy Policys"
         />
+        )}
       
       <DialogActions>
         <Button onClick={handleClose} color="primary">
@@ -159,6 +212,7 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
           Submit
         </Button>
       </DialogActions>
+      
       </form>
       </DialogContent>
     </Dialog>

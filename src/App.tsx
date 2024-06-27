@@ -11,7 +11,6 @@ import DropdownBox from './components/DropDownBox';
 import ReadMoreGrid from './components/ReadMoreGrid';
 import Contact from './components/Contact';
 import BackToTopButton from './components/BackToTop';
-import OtpUI from './components/OtpUI';
 
 const App: React.FC = () => {
 
@@ -31,7 +30,6 @@ const App: React.FC = () => {
     <div>
       
       <Menubar />
-      <OtpUI/>
       <EnquireNow handleOpen={handleOpen} color="primary" name="Enquire Now" sx={{ position: 'fixed',justifyContent: 'center', bottom: '50%', right: -50,  transform: 'rotate(90deg)',zIndex: 1000,}}/>
       <BackToTopButton/>
       <MainContent />
