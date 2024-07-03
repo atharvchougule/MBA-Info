@@ -1,0 +1,8 @@
+.login-popup {
+    z-index: 1000; /* Adjust this value as needed */
+  }
+  
+  /* Set a higher z-index for the SweetAlert2 popup */
+  .high-z-index {
+    z-index: 2000; /* Ensure this is higher than the login popup's z-index */
+  }

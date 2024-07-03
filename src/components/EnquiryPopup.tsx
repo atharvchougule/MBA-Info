@@ -5,6 +5,13 @@ import OtpUI from './OtpUI';
 import { auth } from '../firebase.config';
 import { RecaptchaVerifier , signInWithPhoneNumber  } from 'firebase/auth';
 import { OtpContext } from './OtpContext';
+import Swal from 'sweetalert2';
+import CircularProgress from '@mui/material/CircularProgress';
+import { styled } from '@mui/system';
+
+const TextFieldWrapper = styled('div')({
+  position: 'relative',
+});
 
 
 
@@ -14,9 +21,9 @@ interface EnquiryPopupProps {
   handleClose: () => void;
 }
 
+
 const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
   const { otpValid } = useContext(OtpContext);
-
 
 
   const [formData, setFormData] = useState({
@@ -34,11 +41,13 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
   const [showOtp, setShowOtp] = useState<boolean>(false);
 
   const [confirmationResult, setConfirmationResult] = useState<any>(null);
+  const[load , setLoad] = useState<boolean>(false);
 
 
   useEffect(() => {
     if (formData.phone.length === 10) {
       handleSendOtp(formData.phone);
+      setLoad(true);
     }
   }, [formData.phone]);
    
@@ -77,13 +86,23 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
     e.preventDefault();
     if (formData.agree) {
       sendEmail(e);
-      alert('Form Data Submitted');
+      //alert('Form Data Submitted');
+      (Swal).fire({
+        title: "Good!",
+        text: "Form Data Submitted",
+        icon: "success",
+        customClass: {
+          popup: 'high-z-index'
+        }
+      })
       console.log('Form Data Submitted', formData);
       setFormData({ name: '', email: '', phone: '', city: '', agree: false, specialization: '' }); // Reset form
       setShowOtp(false);
       handleClose();
     } else {
       alert('You must agree to the terms and conditions');
+      
+
     }
   };
 
@@ -179,17 +198,20 @@ const EnquiryPopup: React.FC<EnquiryPopupProps> = ({ open, handleClose }) => {
         ))}
         
       </TextField>
-      <TextField
-          margin="dense"
-          label="Phone"
-          type="tel"
-          fullWidth
-          variant="outlined"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-        />
-        <div id = "recaptcha-container"></div>
+      <TextFieldWrapper>
+          <TextField
+              margin="dense"
+              label="Phone"
+              type="tel"
+              fullWidth
+              variant="outlined"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+            <div id = "recaptcha-container"></div>
+            {!showOtp && load  && <CircularProgress size={20}/>}
+        </TextFieldWrapper>
         {showOtp && confirmationResult && <OtpUI confirmationResult={confirmationResult} />}
         {otpValid === true && (
         <FormControlLabel 

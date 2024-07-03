@@ -7,7 +7,7 @@ interface OtpUIProps {
 }
 
 const OtpUI: React.FC<OtpUIProps> = ({ confirmationResult }) => {
-  const { otpValid, setOtpValid } = useContext(OtpContext);
+  const { setOtpValid } = useContext(OtpContext);
   const [otp, setOtp] = useState<string>('');
   const [otpCheck, setotpCheck] = useState<boolean | null>(null);
 

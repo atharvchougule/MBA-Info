@@ -2,6 +2,7 @@
 import { AppBar, Toolbar, Typography } from '@mui/material';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneIcon from '@mui/icons-material/Phone';
+import "./MenuBar.css";
 
 const Menubar = () => {
   return (
