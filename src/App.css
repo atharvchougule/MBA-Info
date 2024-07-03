@@ -1,0 +1,43 @@
+/* App.css */
+
+
+
+@media (min-width:100px) {
+    .enquire-now-button {
+      right: 0;
+      bottom:5%;
+    }
+
+  }
+/* For small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .enquire-now-button {
+      right: 0;
+      bottom: 40%;
+    }
+  }
+  
+  /* For medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    .enquire-now-button {
+      right: 0;
+      bottom: 30%;
+    }
+  }
+  
+  /* For large devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    .enquire-now-button {
+      right: 0;
+      bottom: 20%;
+    }
+  }
+  
+  /* For extra large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    .enquire-now-button {
+      right: -50px;
+      bottom: 50%;
+    }
+  }
+  

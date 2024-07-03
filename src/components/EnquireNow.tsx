@@ -11,15 +11,17 @@ interface EnquireNowProps {
   sx?: SxProps<Theme>;
   color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' ;
   name:string ;
+  variant?: 'text' | 'contained' | 'outlined' ;
 }
 
-const EnquireNow: React.FC<EnquireNowProps> = ({ handleOpen , color = 'primary' , name , sx }) => {
+const EnquireNow: React.FC<EnquireNowProps> = ({ handleOpen , color = 'primary' , name , sx , variant }) => {
   return (
     <Button
-      variant="contained"
+      size="small"
       color={color}
       onClick={handleOpen}
       sx={{ ...sx}}
+      variant={variant}
     >
       {name}
     </Button>

@@ -11,11 +11,9 @@ import DropdownBox from './components/DropDownBox';
 import ReadMoreGrid from './components/ReadMoreGrid';
 import Contact from './components/Contact';
 import BackToTopButton from './components/BackToTop';
+import './App.css';
 
 const App: React.FC = () => {
-
-  
-
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -30,7 +28,7 @@ const App: React.FC = () => {
     <div>
       
       <Menubar />
-      <EnquireNow handleOpen={handleOpen} color="primary" name="Enquire Now" sx={{ position: 'fixed',justifyContent: 'center', bottom: '50%', right: -50,  transform: 'rotate(90deg)',zIndex: 1000,}}/>
+      <EnquireNow variant='contained' handleOpen={handleOpen} color="primary" name="Enquire Now" sx={{ position: 'fixed',justifyContent: 'center', bottom: '50%', right: -50,  transform: 'rotate(90deg)',zIndex: 1000,}}/>
       <BackToTopButton/>
       <MainContent />
       <EnquiryPopup open={open} handleClose={handleClose} />
@@ -40,7 +38,7 @@ const App: React.FC = () => {
       <Boxes/>
       <TextDisplay label = ' Correspondence Course FAQ’s' sx={{fontSize: 'h4.fontSize',margin: 3,fontWeight: 'bold', textAlign: 'left', color: 'black',}}/>
       <DropdownBox/>
-      <TextDisplay label = 'TOP QUREY' sx={{fontSize: 'h5.fontSize',fontWeight:'bold',margin: 2, textAlign: 'left', color: 'black',}}/>
+      <TextDisplay label = 'TOP QUERY' sx={{fontSize: 'h5.fontSize',fontWeight:'bold',margin: 2, textAlign: 'left', color: 'black',}}/>
       <ReadMoreGrid/>
       <Contact/>
     </div>
