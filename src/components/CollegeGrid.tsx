@@ -43,7 +43,7 @@ const CollegeGrid = () => {
                     <li>SCDL is one of the largest universities in India which offers UG, PG, Diploma, and Certificate courses in the distance learning mode.</li>
                   </ul>
                 </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 , gap:2 }}>
                   <EnquireNow
                     handleOpen={handleOpen}
                     color="primary"
@@ -88,7 +88,7 @@ const CollegeGrid = () => {
                     <li>Eligibility: Candidates must have completed Graduation Degree and a zeal to learn about Entrepreneurship.</li>
                   </ul>
                 </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 4, gap:2 }}>
                   <EnquireNow
                     handleOpen={handleOpen}
                     color="primary"
@@ -131,7 +131,7 @@ const CollegeGrid = () => {
                     <li>LPU has gained approval from the University Grants Commission, Distance Education Bureau, AIU, National Council for Teacher Education (NCTE), Pharmacy Council of India (PCI), Council of Architecture (COA), and The Institute of Engineers (India).</li>
                   </ul>
                 </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 4, gap:2 }}>
                   <EnquireNow
                     handleOpen={handleOpen}
                     color="primary"

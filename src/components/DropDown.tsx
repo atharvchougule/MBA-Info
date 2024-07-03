@@ -1,6 +1,6 @@
 import  { useState } from 'react';
 import React from 'react';
-import { Button, Collapse, Typography } from '@mui/material';
+import { Button, Collapse, Typography , Box} from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import './DropDown.css';
 
@@ -20,6 +20,7 @@ const DropDown: React.FC<DropDownProps> = ({label1 , label2}) => {
 
     return (
         <div className="dropdown" >
+        <Box display="flex" justifyContent="center">
         <Button
             variant="text"
             onClick={handleToggle} 
@@ -37,15 +38,18 @@ const DropDown: React.FC<DropDownProps> = ({label1 , label2}) => {
                 backgroundColor: '#ede7f6',
                 textAlign: 'left', 
                 justifyContent: 'flex-start', 
-                paddingLeft: '16px',
+                paddingLeft: '10px',
+                paddingRight: '10px',
+                fontSize:{ xs: '10px', md: '15px' , lg: '17px'}
 
             }}
         >
             {label1}
         </Button>
+        </Box>
         <Collapse in={expanded}>
             <div className="dropdown-content">
-                <Typography variant="body1" sx={{textAlign:'left' }}>
+                <Typography variant="body1" sx={{textAlign:'left' , paddingLeft: 2 , margin : 1 }}>
                     {label2}
                 </Typography>
             </div>
