@@ -150,6 +150,49 @@ const CollegeGrid = () => {
               </CardContent>
             </Card>
           </Grid>
+
+          <Grid item xs={12} md={6} lg={4}>
+            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: '0 0 15px rgba(0, 0, 0, 0.5)' }}>
+              <CardContent>
+                <Typography variant="h5" component="h2" sx={{ color: 'primary.dark', textAlign: 'center', marginBottom: 2 }}>
+                Manipal University Jaipur
+                </Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 2 }}>
+                  <EnquireNow
+                    handleOpen={handleOpen}
+                    color="primary"
+                    name="Get Free Career Counseling"
+                    variant="contained"
+                    sx={{ justifyContent: 'center', alignContent: 'center' }}
+                  />
+                </Box>
+                <Typography variant="body2" sx={{ textAlign: 'center', marginTop: 2, marginBottom: 2 }}>₹ 75,000/- (Apx./Year)</Typography>
+                <Typography variant="body2" color="text.secondary" sx={{}}>
+                  <ul>
+                    <li>Manipal University Jaipur UGC-Recognized University</li>
+                    <br />
+                    <li>A specialization is offered Finance, Marketing, HRM, Analytics & Data Science, Retail Management, BFS, IIT & FinTech, and Operations Management.</li>
+                  </ul>
+                </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 4, gap:2 }}>
+                  <EnquireNow
+                    handleOpen={handleOpen}
+                    color="primary"
+                    name="Download Brochure"
+                    variant="outlined"
+                    sx={{ justifyContent: 'center' }}
+                  />
+                  <EnquireNow
+                    handleOpen={handleOpen}
+                    color="primary"
+                    name="Enquire Now"
+                    variant="contained"
+                    sx={{ justifyContent: 'center' }}
+                  />
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
           </Grid>
         ) : (
           <>
@@ -323,6 +366,52 @@ const CollegeGrid = () => {
                 color="secondary"
                 name="Enquire Now"
                 sx={{ justifyContent: 'center' , marginRight: 1 }}
+              />
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Grid container sx={{ backgroundColor: 'white' }}>
+            <Grid item xs={2} sx={{ border: 1, borderColor: 'grey.400', padding: 1 }}>
+            Manipal University Jaipur
+            </Grid>
+            <Grid item xs={3} sx={{ border: 1, borderColor: 'grey.400', padding: 1 }}>
+              <Box component="ul" sx={{ margin: 0, paddingLeft: 2 }}>
+                <li>Manipal University Jaipur UGC-Recognized University</li>
+                <li>vA specialization is offered Finance, Marketing, HRM, Analytics & Data Science, Retail Management, BFS, IIT & FinTech, and Operations Management.</li>
+              </Box>
+            </Grid>
+            <Grid item xs={2} sx={{ border: 1, borderColor: 'grey.400', padding: 1 }}>
+              
+                <EnquireNow
+                  variant="contained"
+                  handleOpen={handleOpen}
+                  color="warning"
+                  name="Get Free Career Counseling"
+                  sx={{ justifyContent: 'center' }}
+                />
+              
+            </Grid>
+            <Grid item xs={2} sx={{ border: 1, borderColor: 'grey.400', padding: 1 }}>
+            ₹ 75,000/- (Apx./Year)
+            </Grid>
+            <Grid item xs={3} sx={{ border: 1, borderColor: 'grey.400', padding: 1 , paddingRight: 0 }}>
+            <Box sx={{ display: 'flex', gap: 4 }}>
+                <EnquireNow
+                variant="contained"
+                  handleOpen={handleOpen}
+                  color="secondary"
+                  name="Download Brochure"
+                  sx={{ justifyContent: 'center' }}
+                />
+              <EnquireNow
+              variant="contained"
+                handleOpen={handleOpen}
+                color="secondary"
+                name="Enquire Now"
+                sx={{ justifyContent: 'center', marginRight: 1 }}
               />
               </Box>
             </Grid>

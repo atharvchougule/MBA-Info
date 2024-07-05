@@ -15,7 +15,7 @@ const TextDisplay: React.FC<TextDisplayProps> = ({ label , sx }) =>  {
 
 return(
     <Box 
-    sx={{... sx}}
+    sx={{... sx }}
     >
         {label}
     </Box>

@@ -27,16 +27,17 @@ const MainContent = () => {
         backgroundImage: 'url(https://cncimages.b-cdn.net/distance-programs/wp-content/uploads/2023/12/new-banner.jpg)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'fle',
+        backgroundPosition: 'flex',
         color: 'white',
         textAlign: 'center',
-        p: 2
+        p: 2,
+        boxSizing: 'border-box',
       }}
     >
-      <Typography variant="h4" component="h1" sx={{fontSize:{ xs: '22px', md: '38px' , lg: '50px'} ,margin: {xs:4 , md:9 , lg:9}, fontWeight: 'bold'}}>
+      <Typography variant="h4" component="h1" sx={{fontSize:{ xs: '22px', md: '38px' , lg: '50px'} ,margin: {xs:4 , md:9 , lg:9}, fontWeight: 'bold' , maxWidth: '90%',  wordWrap: 'break-word'}}>
         Top Online MBA Colleges In India 2024-25
       </Typography>
-      <Typography variant="body1" component="p" sx={{margin: 3}}>
+      <Typography variant="body1" component="p" sx={{margin: 3 ,wordWrap: 'break-word'}}>
         Enhance Your Skills with India’s Online MBA Colleges. Explore Top Online MBA Colleges in India
       </Typography>
       <EnquireNow handleOpen={handleOpen} variant='contained' color="warning" name="Enquire Now" sx={{ mt: 2 }} />
